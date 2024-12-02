@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Transfer edits from a reference pair presented as an image before and after editing using Implicit Neural Representation">
+  <meta name="keywords" content="Computational Photography, Style Transfer, Image Enhancement">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INRetouch: Context Aware Implicit Neural Representation for Photography Retouching</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">INRetouch: Context Aware Implicit Neural Representation for Photography Retouching</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.de/citations?user=8v3dYzEAAAAJ&hl=en">Omar Elezabi</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://mv-lab.github.io/">Marcos V. Conde</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/zwwu/accueil">Zongwei Wu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&user=u3MwH5kAAAAJ">Radu Timofte</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Computer Vision Lab, University of Würzburg,</span>
+            <span class="author-block"><sup>2</sup>Sony PlayStation, FTG</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (Coming Soon)</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="video teaser">
+  <div class="container is-max-desktop">
+    <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
+      <source src="./static/videos/INRetouch_Vid_Inf.mp4"
+              type="video/mp4">
+    </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">INRetouch</span> Transfer edits applied to an image to video. We can notice seamless transfer without any visual or temporal artifacts.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Professional photo editing remains challenging, requiring extensive knowledge of imaging pipelines and significant expertise. 
+          With the ubiquity of smartphone photography, there is an increasing demand for accessible yet sophisticated image editing solutions. 
+          While recent deep learning approaches, particularly style transfer methods, have attempted to automate this process, 
+          they often struggle with output fidelity, editing control, and complex retouching capabilities. 
+          We propose a novel retouch transfer approach that learns from professional edits through before-after image pairs, 
+          enabling precise replication of complex editing operations. To facilitate this research direction, 
+          we introduce a comprehensive Photo Retouching Dataset comprising 100,000 high-quality images edited using over 170 professional Adobe Lightroom presets. 
+          We develop a context-aware Implicit Neural Representation that learns to apply edits adaptively based on image content and context, 
+          requiring no pretraining and capable of learning from a single example. 
+          Our method extracts implicit transformations from reference edits and adaptively applies them to new images. 
+          Through extensive evaluation, we demonstrate that our approach not only surpasses existing methods in photo retouching but also enhances performance 
+          in related image reconstruction tasks like Gamut Mapping and Raw Reconstruction. 
+          By bridging the gap between professional editing capabilities and automated solutions, 
+          our work presents a significant step toward making sophisticated photo editing more accessible while maintaining high-fidelity results.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+          <img src="./static/images/teaser_fig_ali.jpg"
+          class="teaser"
+          alt="Image Teaser."/>
+          <h2 class="subtitle has-text-centered">
+            Comparison of different approaches for style transfer in the context of reference based image editing
+          </h2>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <section class="arch teaser">
+      <div class="container is-max-desktop">
+        <h2 class="title has-text-centered">INR Architecture</h2>
+        <img src="./static/images/main_dia.jpg"
+        alt="Arch"/>
+          <h2 class="subtitle has-text-centered">
+            Our proposed INR Pipeline in comparison with the MLP INR Pipeline.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <section class="Qualitative Results">
+      <div class="container is-max-desktop">
+        <h2 class="title has-text-centered">Qualitative Results</h2>
+        <img src="./static/images/benchmark_ali.jpg"
+        alt="Qualitative"/>
+          <h2 class="subtitle has-text-centered">
+            Comparison between different methods Adapted for our retouching transfer task
+          </h2>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</section> -->
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code></code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/omarAlezaby" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a rel="license" href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
