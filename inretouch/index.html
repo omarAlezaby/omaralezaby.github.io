@@ -32,55 +32,16 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/carousel.css">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script src="./static/js/index.js"></script> 
 </head>
 <body>
-
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav> -->
 
 
 <section class="hero">
@@ -109,35 +70,15 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
-              <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span> -->
               <span class="link-block">
-                <a href=""
+                <a href="https://www.arxiv.org/abs/2412.03848"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv (Coming Soon)</span>
+                  <span>arXiv</span>
                 </a>
               </span>
-              <!-- Video Link. -->
-              <!-- <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
                 <a href=""
@@ -166,18 +107,120 @@
   </div>
 </section>
 
-<section class="video teaser">
-  <div class="container is-centered has-text-centered">
+
+ <!-- Slideshow container -->
+ <div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 7</div>
     <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
-      <source src="./static/videos/INRetouch_Vid_Inf.mp4"
+      <source src="./static/videos/comb_v2_1.mp4"
               type="video/mp4">
     </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">INRetouch</span> Transfer edits applied to an image to video. We can notice seamless transfer without any visual or temporal artifacts.
-      </h2>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 7</div>
+    <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
+      <source src="./static/videos/comb_v2_2.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 7</div>
+    <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
+      <source src="./static/videos/comb_v2_3.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+
+
+  <div class="mySlides fade">
+    <div class="numbertext">4 / 7</div>
+    <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
+      <source src="./static/videos/comb_v2_4.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">5 / 7</div>
+    <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
+      <source src="./static/videos/comb_v2_5.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">6 / 7</div>
+    <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
+      <source src="./static/videos/comb_v2_6.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">7 / 7</div>
+    <video id="INRetouch" autoplay controls muted loop playsinline height="100%">
+      <source src="./static/videos/comb_v2_7.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+  <span class="dot" onclick="currentSlide(6)"></span>
+  <span class="dot" onclick="currentSlide(7)"></span>
+</div>
+<script src="./static/js/carousel.js"></script>
+
+<br>
+
+<div class="container is-max-desktop">
+<h2 class="subtitle has-text-centered">
+  <span class="dnerf">INRetouch</span> transfer edits applied to an image to a video without any visual or temporal artifacts.
+</h2>
+</div>
+
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    <div class="content has-text-justified">
+      We train our model on image pairs before and after editing.
+      Designed to be lightweight and efficient, our model enables
+      affordable inference, which motivated us to extend its ap-
+      plication to video editing. As shown in the video, our method effectively learns edits from images and
+      applies them to videos, producing visually pleasing results
+      with excellent temporal consistency and no noticeable artifacts. 
+      This can be attributed to the clarity from the use of
+      image pairs before and after editing as a reference and the
+      design of our method to focus on color modification through
+      local awareness.
+      <br>
+      Unlike existing methods, such as style transfer and
+      generative-based models, which often struggle with tem-
+      poral consistency and introduce significant noise, our ap-
+      proach overcomes these limitations. This demonstrates both
+      the effectiveness of our network and the controllability of
+      the learned edits
+      </p>
     </div>
   </div>
-</section>
+</div>
+</div>
 
 
 <section class="section">
@@ -260,8 +303,19 @@
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
+    <h2 class="title">Contacts</h2>
+    <b>Omar Elezabi</b>: omar.elezabi@uni-wuerzburg.de
+      <br>
+    <b>Marcos V. Conde</b>: marcos.conde@uni-wuerzburg.de
     <h2 class="title">BibTeX</h2>
-    <pre><code></code></pre>
+    <pre><code>
+      @article{elezabi2024inretouch,
+        title={INRetouch: Context Aware Implicit Neural Representation for Photography Retouching},
+        author={Elezabi, Omar and Conde, Marcos V and Wu, Zongwei and Timofte, Radu},
+        journal={arXiv preprint arXiv:2412.03848},
+        year={2024}
+      }      
+    </code></pre>
   </div>
 </section>
 
