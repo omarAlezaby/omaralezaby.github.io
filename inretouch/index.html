@@ -52,20 +52,20 @@
           <h1 class="title is-1 publication-title">INRetouch: Context Aware Implicit Neural Representation for Photography Retouching</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://scholar.google.de/citations?user=8v3dYzEAAAAJ&hl=en">Omar Elezabi</a><sup>1</sup>,</span>
+              <a href="https://scholar.google.de/citations?user=8v3dYzEAAAAJ&hl=en">Omar Elezabi</a>,</span>
             <span class="author-block">
-              <a href="https://mv-lab.github.io/">Marcos V. Conde</a><sup>1,2</sup>,</span>
+              <a href="https://mv-lab.github.io/">Marcos V. Conde</a>,</span>
             <span class="author-block">
-              <a href="https://sites.google.com/view/zwwu/accueil">Zongwei Wu</a><sup>1</sup>,
+              <a href="https://sites.google.com/view/zwwu/accueil">Zongwei Wu</a>,
             </span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?hl=en&user=u3MwH5kAAAAJ">Radu Timofte</a><sup>1</sup>,
+              <a href="https://scholar.google.com/citations?hl=en&user=u3MwH5kAAAAJ">Radu Timofte</a>,
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Computer Vision Lab, University of Würzburg,</span>
-            <span class="author-block"><sup>2</sup>Sony PlayStation, FTG</span>
+            <span class="author-block">Computer Vision Lab, University of Würzburg</span>
+            <!-- <span class="author-block"><sup>2</sup>Sony PlayStation, FTG</span> -->
           </div>
 
           <div class="column has-text-centered">
@@ -191,7 +191,7 @@
 
 <div class="container is-max-desktop">
 <h2 class="subtitle has-text-centered">
-  <span class="dnerf">INRetouch</span> transfer edits applied to an image to a video without any visual or temporal artifacts.
+  <span class="dnerf">INRetouch</span> transfer edits from an image to a video without any visual or temporal artifacts.
 </h2>
 </div>
 
@@ -211,9 +211,9 @@
       local awareness.
       <br>
       Unlike existing methods, such as style transfer and
-      generative-based models, which often struggle with tem-
-      poral consistency and introduce significant noise, our ap-
-      proach overcomes these limitations. This demonstrates both
+      generative-based models, which often struggle with temporal 
+      consistency and introduce significant noise, our approach 
+      overcomes these limitations. This demonstrates both
       the effectiveness of our network and the controllability of
       the learned edits
       </p>
@@ -223,58 +223,50 @@
 </div>
 
 
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
+
     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+          <img src="./static/images/teaser.jpg"
+          class="teaser"
+          alt="Image Teaser."
+          />
+          <h2 class="subtitle has-text-centered">
+            We propose <b>InRetouch</b>, a novel implicit neural representation method for <b>one-shot</b> image retouching transfer.
+          </h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          Professional photo editing remains challenging, requiring extensive knowledge of imaging pipelines 
-          and significant expertise. While recent deep learning approaches, particularly style transfer methods, 
-          have attempted to automate this process, they often struggle with output fidelity, editing control, 
-          and complex retouching capabilities. We propose a novel retouch transfer approach that learns 
-          from professional edits through before-after image pairs, enabling precise replication of complex editing 
-          operations. We develop a context-aware Implicit Neural Representation that learns to apply edits 
-          adaptively based on image content and context, and is capable of learning from a single example. 
-          Our method extracts implicit transformations from reference edits and adaptively applies them to 
-          new images. To facilitate this research direction, we introduce a comprehensive Photo Retouching 
-          Dataset comprising 100,000 high-quality images edited using over 170 professional Adobe Lightroom 
-          presets. Through extensive evaluation, we demonstrate that our approach not only surpasses existing 
-          methods in photo retouching but also enhances performance in related image reconstruction tasks like 
-          Gamut Mapping and Raw Reconstruction. By bridging the gap between professional editing capabilities 
-          and automated solutions, our work presents a significant step toward making sophisticated photo editing 
-          more accessible while maintaining high-fidelity results.
+          Professional photo editing remains challenging, requiring extensive knowledge of imaging 
+          pipelines and significant expertise. While recent deep learning approaches, particularly 
+          style transfer methods, have attempted to automate this process, they often struggle with 
+          output fidelity, editing control, and complex retouching capabilities. We propose a novel 
+          retouch transfer approach that learns from professional edits through before-after image 
+          pairs, enabling precise replication of complex editing operations. We develop a context-aware 
+          Implicit Neural Representation that learns to apply edits adaptively based on image content 
+          and context, and is capable of learning from a single example. Our method extracts implicit 
+          transformations from reference edits and adaptively applies them to new images. To facilitate 
+          this research direction, we introduce a comprehensive Photo Retouching Dataset comprising 100,000 
+          high-quality images edited using over 170 professional Adobe Lightroom presets. Through extensive 
+          evaluation, we demonstrate that our approach not only surpasses existing methods in photo retouching 
+          but also enhances performance in related image reconstruction tasks like Gamut Mapping and Raw 
+          Reconstruction. By bridging the gap between professional editing capabilities and automated solutions, 
+          our work presents a significant step toward making sophisticated photo editing more accessible 
+          while maintaining high-fidelity results.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-          <img src="./static/images/methods_comp.jpg"
-          class="comp"
-          alt="Comparison To Style Transfer."/>
-          <h2 class="subtitle has-text-centered">
-            Comparison of different approaches for style transfer in the context of reference based image editing
-          </h2>
-      </div>
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-          <img src="./static/images/Teaser.jpg"
-          class="teaser"
-          alt="Image Teaser."
-          width=400/>
-          <h2 class="subtitle has-text-centered">
-            Comparison between proposed retouch transfer approach and traditional style transfer. 
-            Proposed retouch transfer enables control over the edits applied to the input image, allowing
-            for region and object specific edits.
-          </h2>
-      </div>
-    </div>
 
   </div>
 
@@ -288,11 +280,7 @@
         <img src="./static/images/Main_Fig.jpg"
         alt="Arch"/>
           <h2 class="subtitle has-text-centered">
-            Our method allows to learn complex photography edits from a single pair of before-after
-            images. Our window sampling allows for fast optimization without constraints on the image size. 
-            Our proposed INR architecture enables including information from neighboring pixels while maintaining 
-            the simplicity and efficiency of traditional INR architecture. During inference, our model generalizes 
-            to any input image and transfers the edits.
+             Our proposed InRetouch Pipeline and INR Architecture.
           </h2>
         </div>
       </div>
@@ -307,31 +295,33 @@
     <section class="Qualitative Results">
       <div class="container is-max-desktop">
         <h2 class="title has-text-centered">Qualitative Results</h2>
+        <img src="./static/images/Proff_Comp.jpg"
+        alt="Qualitative"/>
+          <h2 class="subtitle has-text-centered">
+            Transfer retouches from professionally edited images collected online.
+          </h2>
+
         <img src="./static/images/Bench.jpg"
         alt="Qualitative"/>
           <h2 class="subtitle has-text-centered">
-            Comparison between different methods on retouching transfer task. Our method learns the edits 
-            effectively from a single sample generalizing to wide variety of edits and has the most consistent 
-            output with the GT. We can appreciate the ability of our method to learn and adapt to complex edits 
-            like venting and local modification.
+            Comparison between different methods on retouching transfer Benchmark.
           </h2>
-        </div>
+
       </div>
     </section>
-
   </div>
 </section>
+
 
 <section class="section">
   <div class="container is-max-desktop">
     <section class="Local Modifications">
       <div class="container is-max-desktop">
         <h2 class="title has-text-centered">Local Modifications Applities</h2>
-        <img src="./static/images/mask_edit.jpg"
+        <img src="./static/images/local_edits.jpg"
         alt="Qualitative"/>
           <h2 class="subtitle has-text-centered">
-            Importance of context awareness for local and region specific modifications. We can appreciate our 
-            method ability to recognize different objects and apply local and region-specific edits accurately.
+            Importance of context awareness for local and region specific modifications.
           </h2>
         </div>
       </div>
