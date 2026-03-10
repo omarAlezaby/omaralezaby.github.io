@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Train-Free method to adapt diffusion models for image restoration and editing tasks using only one visual example">
+  <meta name="keywords" content="Generative Editing, Diffusion Models, Image Restoration, Image Enhancement">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visual Diffusion Conditioning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/carousel.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script> 
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Language-Free Generative Editing from One Visual Example</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://omaralezaby.github.io">Omar Elezabi</a>,</span>
+            <span class="author-block">
+              <a href="https://eduardzamfir.github.io">Eduard Zamfir</a>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/zwwu/accueil">Zongwei Wu</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&user=u3MwH5kAAAAJ">Radu Timofte</a>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Computer Vision Lab, University of Würzburg</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <br>
+            <span class="author-block", style="font-size:25px; "><b>CVPR 2026</b></span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="container is-max-desktop">
+<div style=" clear: both; display: table;" >
+  <div style="float: left; width: 45%; padding: 5px;">
+    
+    <img src="static/images/teaser.png" style="width:100%">
+
+  </div>
+  <div style="float: left; width: 55%; padding: 5px;">
+    <img src="static/images/teaser_site.png" style="width:100%">
+  </div>
+</div>
+<b>Text–image misalignment in diffusion latent space.</b>
+Text-guided diffusion models rely on language supervision, which
+often fails to capture appearance-level transformations such as
+rain, leading to semantic but visually misaligned directions. Our
+method, Visual Diffusion Conditioning (VDC), instead learns a
+vision-centric conditioning signal directly from paired visual examples, uncovering the correct transformation direction within the
+latent space. By steering the diffusion process along this aligned
+path, VDC achieves faithful and realistic edits, bridging the gap
+between text semantics and visual representations.
+</div>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+
+    <div class="columns is-centered has-text-centered">
+      
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          Text-guided diffusion models have advanced image editing by enabling intuitive control through language.
+          However, despite their strong capabilities, we surprisingly find that SOTA methods struggle with simple, everyday transformations such as rain or blur. 
+          We attribute this limitation to weak and inconsistent textual supervision during training, which leads to poor alignment between language and vision. 
+          Existing solutions often rely on extra finetuning or stronger text conditioning, but suffer from high data and computational requirements.
+          <br>
+          
+          <blockquote>
+          We contend that the capability for diffusion-based editing is not lost but merely hidden from text. We show that similiar visual features like rain patterns and image blur 
+          are still recongnized in diffusion visual space even if they are not accesable by text. Through visual examples we can find the correct conditioning to access and manipluate these features 
+          </blockquote>
+
+          We introduce <b>Visual Diffusion Conditioning</b> (VDC), a training-free framework that learns visual conditioning signals directly from visual examples for precise, language-free image editing.
+          Given a paired example—one image with and one without the target effect—VDC derives a visual condition that captures the transformation and steers generation through a novel condition-steering mechanism.
+          An accompanying inversion-correction step mitigates reconstruction errors during DDIM inversion, preserving fine detail and realism.
+          Across diverse tasks, VDC outperforms both training-free and fully fine-tuned text-based editing methods.
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+      <h2 class="title is-3 content has-text-centered">Observations</h2>
+      <div class="container is-max-desktop content has-text-justified">
+
+        <br>
+          
+        <h3 class="title is-3",  style="font-size:18px; ">- Text-Visual alignment behavior in T2I Diffusion</h3>
+        The internal representations of Stable-Diffusion fail to accurately capture the semantics of degradations such as “rain” or “haze”. 
+        Attention maps under text-based conditioning remain object-centric and do not correspond to degradation-specific visual attributes. 
+        Omitting text and utlizing visual examples re-aligns attention focus toward true visual cues, recovering meaningful features that correspond to rain streaks and hazy regions.
+        <br>
+        <br>
+         <img src="static/images/vis_attn.png">
+
+        <h3 class="title is-3",  style="font-size:18px; ">- Similar visual features can be accessed with same condition</h3>
+        Our assumption that visual features related to the semantics of degradations such as “rain” or “haze” are already learned but can't be accessed through text. 
+        Our VDC framework finds the condition that can access these visual attributes and utilize it to process other images to achieve one-shot diffusion adaptation 
+        for degradation and editing tasks like DeRain and DeBlur. 
+        When we visualize optimized conditions using different visual example, conditions from the same task form clear clusters, showing that similar visual features
+         (e.g., rain, blur) are recognized without textual dependency. Addtionally we see a small variance in results with the change of the used visual example.
+        <br>
+        <br>
+      <div style=" clear: both; display: table; text-align: center; margin: auto;" >
+        <div style="float: left; width: 50%; padding: 5px; ">
+          <br>
+          <br>
+          <br>
+          <br>
+          <img src="static/images/cond_var.png" style="width:100%;">
+          Variance in performance when changing the visual example
+
+        </div>
+        <div style="float: left; width: 50%; padding: 5px;">
+          <img src="static/images/cond_vis.png" style="width:100%">
+          T-SNE visualization of optimized conditions
+        </div>
+      </div>
+
+        <h3 class="title is-3",  style="font-size:18px; ">- Condition steering more effective for content preservation</h3>
+        In our experiments, we notice that optimizing the generation condition (C<sub>g</sub>) directly produces low fidelity output 
+        as it works by regenerating a new image instead of altering the existing one. Instead, we optimize <b>Condition Steering (C<sub>s</sub>)</b> that
+        guides the unconditional diffusion trajectory toward the desired edit instead of generating a new image. This focuses
+        the optimization on the edit itself, avoiding entanglement with example content and reducing artifact
+        <div style=" clear: both; display: table;" >
+        <div style="float: left; width: 50%; padding: 5px; ">
+          <br>
+          <img src="static/images/vis_path.png" style="width:100%;">
+
+        </div>
+        <div style="float: left; width: 50%; padding: 5px;">
+          <img src="static/images/algorithm.png" style="width:100%">
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+
+    <div class="columns is-centered has-text-centered">
+      
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Methodology</h2>
+        <div class="content has-text-justified">
+          <br>
+        <img src="static/images/method.png" style="display:block; margin-left:auto; margin-right:auto; width:100%;">
+        <br>
+        <b>Proposed VDC framework.</b> (a) Given a real image, we first invert it through DDIM and apply the learned steering condition C<sup>s</sup><sub>t</sub>
+        to guide sampling toward the desired visual feature (e.g., removing rain) while preserving content and quality. (b) A lightweight Condition
+        Generator produces per-step steering embeddings from token indices, representing the target visual feature. These conditions modulate
+        the diffusion outputs through weighted score blending, enabling training-free visual editing without textual prompts.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+
+    <div class="columns is-centered has-text-centered">
+      
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <br>
+
+          <h3 class="title is-3",  style="font-size:18px; ">- VDC efficient and fast condition optimization with zero inference overhead</h3>
+          VDC entails <b>one-time task optimization</b>; once learned, the condition is applied instantly to any new image. While we reported 30
+          mins on a single GPU for condition optimization for peak fidelity, our ablation below shows that VDC outperforms 
+          OmniGen in just 10 steps (∼2 mins). Unlike prior works requiring millions of samples, VDC defines tasks from a single pair, 
+          yielding a significant efficiency gain. <b>Inference incurs zero overhead</b>, as VDC replaces CFG, leaving latency 
+          determined by the underlying diffusion model.
+            <br>
+          <br>
+          <img src="static/images/speeed.png" style="display:block; margin-left:auto; margin-right:auto; width:80%;">
+
+          <h3 class="title is-3",  style="font-size:18px; ">- VDC allows one-shot editing adaptations</h3>
+          With just <b>one visual example</b> VDC yields clean results supassing other methods incluing specific purpose restoration methods.
+          Text- and example-based methods struggle with complex edits due to misalignment or degradation priors.
+          <br>
+          <br>
+          <img src="static/images/benchmark.png">
+
+
+
+
+
+          <h3 class="title is-3",  style="font-size:18px; ">- VDC generalize to real-data from synthetic examples</h3>
+          Our method optimize the condition to access already learned visual attributes related to the semantics of degradations such as “rain” or “noise” learned from real data.
+          This makes it easier for our method to <b>extend to out-of-distribution data</b>, allowing it to <b>work on real images</b>.
+          We compare our method to state-of-the-art All-in-One Image Restoration (IR) on real image De-Rain. Our method is able to generalize to real data while prior works fail.
+          <div style=" clear: both; display: table;" >
+        <div style="float: left; width: 55%; padding: 5px; ">
+          <br>
+          <br>
+          <br>
+          <img src="static/images/real_rain_comp.png" style="width:100%;">
+        </div>
+        <div style="float: left; width: 45%; padding: 5px;">
+          <img src="static/images/real_data.png" style="width:100%">
+        </div>
+      </div>
+
+
+          <h3 class="title is-3",  style="font-size:18px; ">- VDC can extend to a general editing method</h3>
+          We center our benchmark on fine-detail edits, global adjustments, and image restoration tasks—categories where existing methods often struggle due to visual–text misalignment. 
+          Nonetheless, our approach is a <b>general editing framework</b>: it extracts the transformation from a given example and applies it to a new input. 
+          <br>
+          <br>
+          <img src="static/images/general_edit.png" style="display:block; margin-left:auto; margin-right:auto; width:80%;">
+
+          <br>
+          However, VDC prioritizes structural fidelity over non-rigid flexibility to prevent hallucinations, which limits large changes.
+          VDC resolves this by <b>supporting textual control</b>: as shown below, VDC handles visual patterns (DeRain) while text drives semantic shifts (e.g., bears&rarr;cats) and non-rigid edits (e.g., closing eyes).
+          <br>
+          <br>
+          <img src="static/images/text_cond.png" style="display:block; margin-left:auto; margin-right:auto; width:80%;">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Contacts</h2>
+    <b>Omar Elezabi</b>: omar.elezabi@uni-wuerzburg.de
+    <h2 class="title">BibTeX</h2>
+    <pre><code>   
+    </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer"> 
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/omarAlezaby" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a rel="license" href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
